@@ -1,4 +1,4 @@
--- hbnb_test_db database
+-- hbnb_test_db
 
 CREATE database IF NOT EXISTS hbnb_test_db;
 CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'hbnb_test_pwd';
