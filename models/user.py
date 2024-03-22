@@ -11,5 +11,7 @@ class User(BaseModel, Base):
                    nullable=False)
     password = Column(String(128),
                       nullable=False)
-    first_name = Column(String(128))
-    last_name = Column(String(128))
+    first_name = Column(String(128),
+                        nullable=True)
+    last_name = Column(String(128),
+                       nullable=True)
