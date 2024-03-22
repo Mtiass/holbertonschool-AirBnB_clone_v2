@@ -2,6 +2,7 @@
 """ Place Module for HBNB project """
 from models.base_model import BaseModel
 from sqlalchemy import Column, String, ForeignKey, Integer, Float
+from sqlalchemy.orm import relationship
 
 
 class Place(BaseModel):
@@ -53,3 +54,12 @@ class Place(BaseModel):
         Float,
         nullable=True
     )
+
+    reviews = relationship(
+        "Review", back_populates="place", cascade="all, delete")
+
+    @property
+    def reviews(self):
+        """Getter for reviews that belong to this place."""
+        from models.review import Review
+        return Review.query.filter_by(place_id=self.id).all()
