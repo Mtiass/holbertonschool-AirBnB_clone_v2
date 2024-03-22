@@ -64,3 +64,6 @@ class FileStorage:
             self.save()
         except Exception:
             pass
+
+    def close(self):
+        self.reload()
