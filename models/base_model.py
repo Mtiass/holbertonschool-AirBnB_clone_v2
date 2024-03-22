@@ -4,10 +4,10 @@ import uuid
 from datetime import datetime
 from sqlalchemy import Column, DateTime, String
 
-Base = declarative_base()
 
+Base = declarative_base()
 class BaseModel:
-    
+    """A base class for all hbnb models"""
     id = Column(
         String(60),
         nullable=False,
@@ -23,8 +23,7 @@ class BaseModel:
         nullable=False,
         default=datetime.utcnow()
     )
-    
-    """A base class for all hbnb models"""
+
     def __init__(self, *args, **kwargs):
         if not kwargs:
             from models import storage
@@ -71,4 +70,6 @@ class BaseModel:
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
+        if '_sa_instance_state' in dictionary:
+            del dictionary['_sa_instance_state']
         return dictionary
