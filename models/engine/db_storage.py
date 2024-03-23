@@ -11,7 +11,6 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 import os
 
 
-
 class DBStorage:
     __engine = None
     __session = None
@@ -33,24 +32,6 @@ class DBStorage:
         if env == "test":
             Base.metadata.drop_all(self.__engine)
         Base.metadata.create_all(self.__engine)
-        
-    def all(self, cls=None):
-        """ query on the current database session """
-        dic = {}
-        if os.getenv("HBNB_ENV") == "test":
-            xd = self.__session.query(State).all()
-        else:
-            if cls is None:
-                xd = self.__session.query(State, City, Place,
-                                         Review, User, Amenity).all()
-            else:
-                xd = self.__session.query(cls).all()
-
-        for obj in xd:
-            # delattr(obj,"_sa_instance_state") sert à rien
-            dic[f"{obj.__class__.__name__}.{obj.id}"] = obj
-
-        return dic
 
 
     def new(self, obj):
