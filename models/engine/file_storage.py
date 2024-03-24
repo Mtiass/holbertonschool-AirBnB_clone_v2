@@ -57,13 +57,9 @@ class FileStorage:
             pass
         
     def delete(self, obj=None):
-        """ method to delete objects """
-        try:
-            value = "{}.{}".format(obj.__class__.__name__, obj.id)
-            del self.__objects[value]
-            self.save()
-        except Exception:
-            pass
+        if obj is not None:
+            delete_key = str(obj.__class__.__name__) + '.' + (obj.id)
+            FileStorage.__objects.pop(delete_key)
 
     def close(self):
         self.reload()
