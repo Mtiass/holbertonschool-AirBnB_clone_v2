@@ -12,26 +12,26 @@ import os
 
 
 class DBStorage:
+    """This class manages storage of hbnb models in a SQL database"""
     __engine = None
     __session = None
 
     def __init__(self):
-        user = os.environ.get("HBNB_MYSQL_USER")
-        password = os.environ.get("HBNB_MYSQL_PWD")
-        host = os.environ.get("HBNB_MYSQL_HOST")
-        database = os.environ.get("HBNB_MYSQL_DB")
-        env = os.environ.get("HBNB_ENV")
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}:3306/{}".
-                                      format(user, password, host, database),
-                                      pool_pre_ping=True)
-
-        Session = sessionmaker(bind=self.__engine)
-        Session.configure(bind=self.__engine)
-        self.__session = Session()
-
-        if env == "test":
+        """Initializes the SQL database storage"""
+        user = os.getenv('HBNB_MYSQL_USER')
+        pword = os.getenv('HBNB_MYSQL_PWD')
+        host = os.getenv('HBNB_MYSQL_HOST')
+        db_name = os.getenv('HBNB_MYSQL_DB')
+        env = os.getenv('HBNB_ENV')
+        DATABASE_URL = "mysql+mysqldb://{}:{}@{}:3306/{}".format(
+            user, pword, host, db_name
+        )
+        self.__engine = create_engine(
+            DATABASE_URL,
+            pool_pre_ping=True
+        )
+        if env == 'test':
             Base.metadata.drop_all(self.__engine)
-        Base.metadata.create_all(self.__engine)
 
     def new(self, obj):
         """new method"""
