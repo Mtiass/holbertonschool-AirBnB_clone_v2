@@ -47,6 +47,7 @@ class DBStorage:
             return
         else:
             self.__session.delete(obj)
+
     def reload(self):
         """reload method"""
         from sqlalchemy.ext.declarative import declarative_base
