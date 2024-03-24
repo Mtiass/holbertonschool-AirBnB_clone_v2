@@ -3,10 +3,6 @@
 import uuid
 from datetime import datetime
 from sqlalchemy import Column, DateTime, String
-from sqlalchemy.ext.declarative import declarative_base
-
-
-Base = declarative_base()
 
 
 class BaseModel:
@@ -28,6 +24,7 @@ class BaseModel:
     )
 
     def __init__(self, *args, **kwargs):
+        """This is the initializer method"""
         if not kwargs:
             from models import storage
             self.id = str(uuid.uuid4())
