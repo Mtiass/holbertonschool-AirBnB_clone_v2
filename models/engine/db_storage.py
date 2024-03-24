@@ -33,20 +33,23 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
         Base.metadata.create_all(self.__engine)
 
-
     def new(self, obj):
+        """new method"""
         self.__session.add(obj)
 
     def save(self):
+        """save method"""
         self.__session.commit()
 
     def delete(self, obj=None):
+        """delete method"""
         if obj is None:
             return
         else:
             self.__session.delete(obj)
 
     def reload(self):
+        """reload method"""
         from sqlalchemy.ext.declarative import declarative_base
 
         Base = declarative_base()
