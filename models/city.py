@@ -20,7 +20,3 @@ class City(BaseModel, Base):
         )
     places = relationship(
         "Place", backref="cities")
-    
-    
-    #places = relationship(
-    #   "Place", back_populates="cities", cascade="all, delete")

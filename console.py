@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[classname](**attributs)
         new_instance.save()
         print(new_instance.id)
-    
+
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
@@ -238,7 +238,7 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def help_count(self):
-        """ """
+        """Method to count number of instances of a class"""
         print("Usage: count <class_name>")
 
     def do_update(self, args):
@@ -309,19 +309,17 @@ class HBNBCommand(cmd.Cmd):
             # block only runs on even iterations
             if (i % 2 == 0):
                 att_val = args[i + 1]  # following item is value
-                if not att_name:  # check for att_name
-                    print("** attribute name missing **")
-                    return
-                if not att_val:  # check for att_value
-                    print("** value missing **")
-                    return
-                # type cast as necessary
-                if att_name in HBNBCommand.types:
-                    att_val = HBNBCommand.types[att_name](att_val)
-
-                # update dictionary with name, value pair
-                new_dict.__dict__.update({att_name: att_val})
-
+            if not att_name:  # check for att_name
+                print("** attribute name missing **")
+                return
+            if not att_val:  # check for att_value
+                print("** value missing **")
+                return
+            # type cast as necessary
+            if att_name in HBNBCommand.types:
+                att_val = HBNBCommand.types[att_name](att_val)
+            # update dictionary with name, value pair
+            new_dict.__dict__.update({att_name: att_val})
         new_dict.save()  # save updates to file
 
     def help_update(self):

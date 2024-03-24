@@ -9,5 +9,4 @@ if os.environ.get('HBNB_TYPE_STORAGE') == 'db':
     storage = DBStorage()
 else:
     storage = FileStorage()
-
 storage.reload()

@@ -21,4 +21,3 @@ class Review(BaseModel, Base):
         ForeignKey('users.id'),
         nullable=False
     )
-    
