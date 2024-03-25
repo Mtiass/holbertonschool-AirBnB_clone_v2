@@ -3,7 +3,6 @@
 import os
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-
 from models.base_model import BaseModel, Base
 
 
@@ -21,6 +20,3 @@ class City(BaseModel, Base):
         cascade='all, delete, delete-orphan',
         backref='cities'
     ) if os.getenv('HBNB_TYPE_STORAGE') == 'db' else None
-
-# cascade: En SQLAlchemy, se utiliza para especificar cómo se propagan las operaciones de cambio entre objetos relacionados
-# backref: En SQLAlchemy, se utiliza para establecer automáticamente una relación inversa entre dos clases
