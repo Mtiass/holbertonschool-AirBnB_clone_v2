@@ -34,25 +34,34 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def new(self, obj):
-        """new method"""
-        self.__session.add(obj)
+        """Adds new object to storage database"""
+        if obj is not None:
+            try:
+                self.__session.add(obj)
+                self.__session.flush()
+                self.__session.refresh(obj)
+            except Exception as ex:
+                self.__session.rollback()
+                raise ex
 
     def save(self):
         """save method"""
         self.__session.commit()
 
     def delete(self, obj=None):
-        """delete method"""
-        if obj is None:
-            return
-        else:
-            self.__session.delete(obj)
+        """Removes an object from the storage database"""
+        if obj is not None:
+            self.__session.query(type(obj)).filter(
+                type(obj).id == obj.id).delete(
+                synchronize_session=False
+            )
 
     def reload(self):
-        """reload method"""
-        from sqlalchemy.ext.declarative import declarative_base
-
-        Base = declarative_base()
-        s = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = scoped_session(s)
+        """Loads storage database"""
         Base.metadata.create_all(self.__engine)
+        SessionFactory = sessionmaker(
+            bind=self.__engine,
+            expire_on_commit=False
+        )
+        self.__session = scoped_session(SessionFactory)()
+
