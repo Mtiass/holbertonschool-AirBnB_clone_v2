@@ -42,8 +42,7 @@ def n_route(n):
 @wapp.route('/number_template/<int:n>', strict_slashes=False)
 def n_template(n):
     """Method to display a HTML page only if n is an integer"""
-    if n is int:
-        return render_template('5-number.html', n=n)
+    return (render_template('5-number.html', n=n))
 
 
 if __name__ == "__main__":
