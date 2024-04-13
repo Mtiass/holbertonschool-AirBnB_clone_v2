@@ -25,6 +25,7 @@ def c_route(text):
     return ("C {}".format(text))
 
 
+@wapp.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @wapp.route('/python/<text>', strict_slashes=False)
 def py_route(text):
     """Method that displays python and <text> in route '/python/<text>."""
