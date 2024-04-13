@@ -19,10 +19,10 @@ def greet_hbnb():
 
 
 @wapp.route('/c/<text>', strict_slashes=False)
-def c_route():
+def c_route(txt):
     """Method that displays c and <text>"""
-    text = escape(text).replace('_', ' ')
-    return ("C {}".format(text))
+    txt = txt.replace('_', ' ')
+    return ("C {}".format(txt))
 
 
 if __name__ == "__main__":
