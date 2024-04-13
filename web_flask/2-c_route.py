@@ -25,5 +25,12 @@ def c_route(text):
     return ("C {}".format(text))
 
 
+@wapp.route('/python/<text>', strict_slashes=False)
+def py_route(text):
+    """Method that displays python and <text> in route '/python/<text>."""
+    text = text.replace('_', ' ')
+    return ("Python {}".format(text))
+
+
 if __name__ == "__main__":
     wapp.run(host='0.0.0.0', port=5000)
