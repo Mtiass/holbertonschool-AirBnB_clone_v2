@@ -21,7 +21,7 @@ def greet_hbnb():
 @wapp.route('/c/<text>', strict_slashes=False)
 def c_route():
     """Method that displays c and <text>"""
-    text = text.replace('_', ' ')
+    text = escape(text).replace('_', ' ')
     return ("C {}".format(text))
 
 
