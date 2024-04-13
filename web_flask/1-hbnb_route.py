@@ -13,7 +13,7 @@ def greetings():
 
 
 @wapp.route('/hbnb', strict_slashes=False)
-def greetings():
+def greet_hbnb():
     """Method that displays "HBNB"."""
     return "HBNB"
 
