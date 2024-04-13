@@ -4,6 +4,8 @@ from flask import Flask
 
 
 wapp = Flask(__name__)
+
+
 @wapp.route('/', strict_slashes=False)
 def greetings():
     return "Hello HBNB!"
