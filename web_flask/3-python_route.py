@@ -26,7 +26,7 @@ def c_route(text):
 
 
 @wapp.route('/python/<text>', strict_slashes=False)
-def py_route(text):
+def py_route(text="is cool"):
     """Method that displays python and <text> in route '/python/<text>."""
     text = text.replace('_', ' ')
     return ("Python {}".format(text))
