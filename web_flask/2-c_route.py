@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Script that starts a Flask web application"""
 from flask import Flask
-from werkzeug.utils import escape
 
 
 wapp = Flask(__name__)
@@ -20,10 +19,10 @@ def greet_hbnb():
 
 
 @wapp.route('/c/<text>', strict_slashes=False)
-def c_route(txt):
+def c_route(text):
     """Method that displays c and <text> in route '/c/<text>."""
-    txt = escape(txt).replace('_', ' ')
-    return ("C {}".format(txt))
+    text = text.replace('_', ' ')
+    return ("C {}".format(text))
 
 
 if __name__ == "__main__":
