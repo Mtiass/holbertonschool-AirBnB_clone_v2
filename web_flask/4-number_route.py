@@ -33,11 +33,10 @@ def py_route(text):
     return ("Python {}".format(text))
 
 
-@wapp.route('/number/<n>', strict_slashes=False)
+@wapp.route('/number/<int:n>', strict_slashes=False)
 def n_route(n):
     """Method to displays n if is an int in route '/number/<n>'."""
-    if n == int:
-        return ("{} is a number".format(n))
+    return ("{} is a number".format(n))
 
 
 if __name__ == "__main__":
