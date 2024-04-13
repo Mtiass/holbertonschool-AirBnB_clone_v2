@@ -10,7 +10,7 @@ wapp = Flask(__name__)
 @wapp.route("/states_list", strict_slashes=False)
 def st_list():
     """Method to display a HTML page."""
-    states = storage.all(State)
+    states = storage.all(State).values()
     return (render_template("7-states_list.html", states=states))
 
 
